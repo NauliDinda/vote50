@@ -83,7 +83,7 @@ email: use1@user
 
 The following landing page of administrator should appear:
 
-![Admin Dashboard](/images/admin_home.png)
+![Admin Dashboard](https://github.com/NauliDinda/vote50/blob/main/images/pagehome.png)
 
 ## The Administrator can do the following:
 
