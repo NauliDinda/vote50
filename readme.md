@@ -56,7 +56,7 @@ https://github.com/NauliDinda/vote50/tree/main
 3. Open terminal window, and change directory to your own choice
 4. Use the following command to clone the project:
 
-    `$  git clone https://github.com/code50/148388805/tree/main/project.git`
+    `$  https://github.com/NauliDinda/vote50.git`
 
     Make sure the clone process is finished before proceeding to the next step.
 
