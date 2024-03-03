@@ -52,14 +52,15 @@ Refer to this documentation to install and configure Git: https://git-scm.com/bo
 
  1. Navigate to the project repository using the following link:
 https://github.com/code50/148388805/tree/main/project
-2. Open terminal window, and change directory to your own choice
-3. Use the following command to clone the project:
+https://github.com/NauliDinda/vote50/tree/main
+3. Open terminal window, and change directory to your own choice
+4. Use the following command to clone the project:
 
     `$  git clone https://github.com/code50/148388805/tree/main/project.git`
 
     Make sure the clone process is finished before proceeding to the next step.
 
-  4. Change directory to the application directory.
+  5. Change directory to the application directory.
 
 		  $  cd project
 4. Launch the application
@@ -67,7 +68,7 @@ https://github.com/code50/148388805/tree/main/project
 	    $  flask run
 	The application run on http://127.0.0.1:5000/ by default. The following landing page should appear:
 
-	![Application landing page](https://markdown-here.com/images/pagehome.png)
+	![Application landing page](https://github.com/NauliDinda/vote50/blob/main/images/pagehome.png)
 
 # 4. Using The Application
 
@@ -83,7 +84,7 @@ email: use1@user
 
 The following landing page of administrator should appear:
 
-![Admin Dashboard](https://github.com/NauliDinda/vote50/blob/main/images/pagehome.png)
+![Admin Dashboard](https://github.com/NauliDinda/vote50/blob/main/images/admin_home.png)
 
 ## The Administrator can do the following:
 
@@ -97,16 +98,16 @@ These actions help the administrator to control the voting and the counting vote
 
 The following landing page when the administrator edit or delete candidate:
 
-![Register Candidate](https://https://github.com/code50/148388805/tree/main/project/images/reg_edit_candidate.png)
+![Register Candidate](https://github.com/code50/148388805/tree/main/project/images/reg_edit_candidate.png)
 
 To add candidate, the administrator needs to prepare some data which are; name of candidate, name of party , manifesto or the candidate's program, the logo of the candidate (use an url of a logo)
 the landing page to add candidate should appear like this:
 
-![Add Candidate](https://https://github.com/code50/148388805/tree/main/project/images/add_candidate.png)
+![Add Candidate](https://github.com/code50/148388805/tree/main/project/images/add_candidate.png)
 
 The landing page where the administrator register voters;
 
-![Register Voter](https://https://github.com/code50/148388805/tree/main/project/images/reg_user.png)
+![Register Voter](https://github.com/code50/148388805/tree/main/project/images/reg_user.png)
 
 Once the candidates and the voters are ready, then the voter can be processed.
 
