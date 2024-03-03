@@ -1,0 +1,19 @@
+{% extends "layout_user.html" %}
+
+{% block title %}
+    Lets Vote
+{% endblock %}
+
+{% block main %}
+<main class="container mt-4">
+    <div class="card text-center">
+        <div class="card-header">
+            <h1 class="card-title">Welcome, {{ session['username'] }}!</h1>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Thank you for logging in. You are now ready to cast your vote.</p>
+            <a href="/candidates" class="btn btn-primary">Go to Voting Page</a>
+        </div>
+    </div>
+</main>
+{% endblock %}

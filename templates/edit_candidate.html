@@ -1,0 +1,48 @@
+{% extends "layout_admin.html" %}
+
+{% block title %}
+    Edit Candidate
+{% endblock %}
+
+{% block main %}
+<style>
+
+    /* Menambahkan gaya untuk card */
+    .menu-card {
+        margin-bottom: 20px;
+    }
+</style>
+
+
+<div class="container mt-4">
+    <h1>Edit Candidate</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" name="name" class="form-control" value="{{ candidate.name }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="party" class="form-label">Party:</label>
+                    <input type="text" name="party" class="form-control" value="{{ candidate.party }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="manifesto" class="form-label">Manifesto:</label>
+                    <textarea name="manifesto" class="form-control" required>{{ candidate.manifesto }}</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image_url" class="form-label">Image URL:</label>
+                    <input type="text" name="image_url" class="form-control" value="{{ candidate.image_url }}" required>
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Update">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

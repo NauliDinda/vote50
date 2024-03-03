@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote Results</title>
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Custom Styles for Navbar -->
+    <style>
+        .navbar-custom {
+            background-color: rgba(52, 152, 219, 0.7);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: #fff !important;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link:focus {
+            background-color: #f9e79f;
+            border-radius: 5px;
+            color: #5d4037 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Section -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Vote 50!</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin_home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login to user</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/results">Results</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Section -->
+    <div class="container mt-5">
+        <!-- Table Section -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h2>Vote Results Table</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Candidate</th>
+                            <th>Party</th>
+                            <th>Total Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="voteResultsTableBody">
+                        <!-- Data will be populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br>
+
+        <!-- Charts Section -->
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Pie Chart</h2>
+                <canvas id="voteResultsPieChart"></canvas>
+            </div>
+
+            <div class="col-md-6">
+                <h2>Bar Chart</h2>
+                <canvas id="voteResultsBarChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+<script>
+    let pieChart, barChart;
+
+    function updateResults() {
+        fetch('/get_results')
+        .then(response => response.json())
+        .then(data => {
+            const labels = data.map(candidate => `${candidate.name} (${candidate.party})`);
+            const voteCounts = data.map(candidate => candidate.total_votes);
+
+            // Gunakan palet warna yang sama untuk kedua diagram
+            const colorPalette = [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ];
+
+            // Pie Chart
+            const pieCtx = document.getElementById('voteResultsPieChart').getContext('2d');
+            if (pieChart) {
+                pieChart.destroy();
+            }
+            pieChart = new Chart(pieCtx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: voteCounts,
+                        backgroundColor: colorPalette,
+                        borderColor: colorPalette,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            });
+
+            // Bar Chart
+            const barCtx = document.getElementById('voteResultsBarChart').getContext('2d');
+            if (barChart) {
+                barChart.destroy();
+            }
+            barChart = new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Number of Votes',
+                        data: voteCounts,
+                        backgroundColor: colorPalette,
+                        borderColor: colorPalette,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+
+            // Update Table
+            const tableBody = document.getElementById('voteResultsTableBody');
+            tableBody.innerHTML = ""; // Clear existing data
+
+            data.forEach(candidate => {
+                const row = `<tr>
+                                <td>${candidate.name}</td>
+                                <td>${candidate.party}</td>
+                                <td>${candidate.total_votes}</td>
+                            </tr>`;
+                tableBody.innerHTML += row;
+            });
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        updateResults();
+        setInterval(updateResults, 15000); // Refresh results every 15 seconds
+    });
+</script>
+
+</body>
+</html>

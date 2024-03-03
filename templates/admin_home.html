@@ -1,0 +1,61 @@
+
+{% extends "layout_admin.html" %}
+
+{% block title %}
+    Admin Home
+{% endblock %}
+
+{% block main %}
+<div class="container mt-4">
+    <!-- Menggunakan 'container' untuk memberikan padding ke konten -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card menu-card">
+                <div class="card-body">
+                    <h5 class="card-title">Add Candidates</h5>
+                    <p class="card-text">This option allows you to add new candidates for the voting process.</p>
+                    <a href="/add_candidates" class="btn btn-primary">Go to Add Candidates</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card menu-card">
+                <div class="card-body">
+                    <h5 class="card-title">Edit Candidate</h5>
+                    <p class="card-text">This option allows you to edit the details of existing candidates.</p>
+                    <a href="/list_candidate" class="btn btn-primary">Go to Edit Candidate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card menu-card">
+                <div class="card-body">
+                    <h5 class="card-title">View Results</h5>
+                    <p class="card-text">This option allows you to view the results of the voting process.</p>
+                    <a href="/results" class="btn btn-primary">Go to View Results</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card menu-card">
+                <div class="card-body">
+                    <h5 class="card-title">Add User</h5>
+                    <p class="card-text">This option allows you to add new users for the voting portal.</p>
+                    <a href="/register" class="btn btn-primary">Go to Add User</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card menu-card">
+                <div class="card-body">
+                    <h5 class="card-title">USER INFORMATION</h5>
+                    <p class="card-text">Check the user status.</p>
+                    <a href="/admin_status" class="btn btn-primary">Go to User status</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

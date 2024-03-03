@@ -1,0 +1,103 @@
+{% extends "layout_user.html" %}
+
+{% block title %}
+ vote for your choice
+{% endblock %}
+
+{% block main %}
+<style>
+    .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transition: background-color 0.3s ease;
+    }
+
+    .card:hover {
+        background-color: #749ac8;
+    }
+
+    .card.selected {
+        background-color: #b4b4b4 !important;
+    }
+
+    .card-img-top {
+        width: 90%;
+        height: 400px;
+        max-height: 300px; /* Set maximum height if needed */
+    }
+</style>
+
+<div class="container">
+    <h2>Candidates</h2>
+    <form id="voteForm">
+        <div class="row">
+            {% for candidate in candidates %}
+            <div class="col-md-4 mb-4">
+                <div class="card" onclick="selectCandidate(this)">
+                    <img src="{{ candidate.image_url }}" class="card-img-top" alt="{{ candidate.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ candidate.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">my party : {{ candidate.party }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">manifesto : {{ candidate.manifesto}}</h6>
+                        <input type="radio" name="candidate_id" value="{{ candidate.id }}" class="form-check-input"> Vote for {{ candidate.name }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">Vote</button>
+    </form>
+</div>
+
+<script>
+    function selectCandidate(card) {
+        const cards = document.querySelectorAll('.card');
+        cards.forEach((c) => c.classList.remove('selected'));
+        card.classList.add('selected');
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const form = document.getElementById('voteForm');
+        form.onsubmit = function(e) {
+            e.preventDefault();
+            const selectedCard = document.querySelector('.card.selected');
+            if (selectedCard) {
+                const candidate_id = selectedCard.querySelector('input[name="candidate_id"]').value;
+                fetch('/get_vote', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        candidate_id: candidate_id
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                        window.location.href = '/vote_failed';
+                    } else {
+                        alert(data.success);
+                        // Redirect ke halaman success.html setelah sukses memilih
+                        window.location.href = '/vote_succes';
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            } else {
+                alert('Please select a candidate before voting.');
+            }
+        };
+    });
+</script>
+{% endblock %}
+
+
+<body>
+
+</body>
+</html>

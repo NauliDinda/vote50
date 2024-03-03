@@ -1,0 +1,95 @@
+
+{% extends "layout_admin.html" %}
+
+{% block title %}
+    User Information
+{% endblock %}
+
+{% block main %}
+<style>
+    body {
+        background-color: #f8f9fa; /* Warna latar belakang */
+    }
+
+    .container {
+        margin-top: 20px;
+    }
+
+    .table-container {
+        background-color: #fff; /* Warna latar belakang card */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+        padding: 20px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th,
+    td {
+        border: 1px solid #ddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .reset-button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+<div class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flashes">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <h2 class="mt-3 mb-4">User Vote Information</h2>
+
+    <!-- Tambahkan kelas "table-container" untuk card -->
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Vote Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users_status %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{% if user.has_voted == 1 %} Voted {% else %} Not Voted {% endif %}</td>
+                    <td>
+                        {% if user.has_voted == 1 %}
+                        <form method="post" action="{{ url_for('reset_vote', user_id=user.id) }}">
+                            <!-- Tambahkan kelas "btn" dan "btn-success" dari Bootstrap -->
+                            <button class="btn btn-success reset-button" type="submit">Reset Vote</button>
+                        </form>
+                        {% endif %}
+                        <form method="post" action="{{ url_for('delete_user', user_id=user.id) }}">
+                            <!-- Tambahkan kelas "btn" dan "btn-danger" dari Bootstrap -->
+                            <button class="btn btn-danger reset-button" type="submit">Delete User</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

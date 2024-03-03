@@ -1,0 +1,22 @@
+{% extends "layout_user.html" %}
+
+{% block title %}
+    You Have Voted
+{% endblock %}
+
+{% block main %}
+<main class="container mt-4">
+    <div class="card text-center">
+        <div class="card-header">
+            <h1 class="card-title">Welcome, {{ session['username'] }}!</h1>
+        </div>
+        <div class="card-body">
+            <p class="card-text">After we check, you have already voted so there is no need to vote again.</p>
+            <a href="/logout" class="btn btn-primary">LOGOUT</a>
+            <a href="/results" class="btn btn-primary">SHOW RESULT</a>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+
