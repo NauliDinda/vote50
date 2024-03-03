@@ -51,8 +51,8 @@ Refer to this documentation to install and configure Git: https://git-scm.com/bo
 # 3. Clone and Launch The Application
 
  1. Navigate to the project repository using the following link:
-https://github.com/code50/148388805/tree/main/project
-https://github.com/NauliDinda/vote50/tree/main
+	. https://github.com/code50/148388805/tree/main/project
+	. https://github.com/NauliDinda/vote50/tree/main
 3. Open terminal window, and change directory to your own choice
 4. Use the following command to clone the project:
 
