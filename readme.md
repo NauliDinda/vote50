@@ -98,16 +98,16 @@ These actions help the administrator to control the voting and the counting vote
 
 The following landing page when the administrator edit or delete candidate:
 
-![Register Candidate](https://github.com/code50/148388805/tree/main/project/images/reg_edit_candidate.png)
+![Register Candidate](https://github.com/NauliDinda/vote50/blob/main/images/reg_edit_candidate.png)
 
 To add candidate, the administrator needs to prepare some data which are; name of candidate, name of party , manifesto or the candidate's program, the logo of the candidate (use an url of a logo)
 the landing page to add candidate should appear like this:
 
-![Add Candidate](https://github.com/code50/148388805/tree/main/project/images/add_candidate.png)
+![Add Candidate](https://github.com/NauliDinda/vote50/blob/main/images/add_candidate.png)
 
 The landing page where the administrator register voters;
 
-![Register Voter](https://github.com/code50/148388805/tree/main/project/images/reg_user.png)
+![Register Voter](https://github.com/NauliDinda/vote50/blob/main/images/reg_user.png)
 
 Once the candidates and the voters are ready, then the voter can be processed.
 
@@ -117,18 +117,18 @@ This is to control that only the registered voter can vote a candidate in the vo
 
 ### the landing page of successful registration of a voter should appear:
 ---
-![User Log in Success](https://github.com/code50/148388805/tree/main/project/images/user_login.png)
+![User Log in Success](https://github.com/NauliDinda/vote50/blob/main/images/user_login.png)
 ---
 
 ### After log in, the voter will see the page for candidates in the election.
 ---
-![Vote a Candidate](https://github.com/code50/148388805/tree/main/project/images/vote_candidate.png)
+![Vote a Candidate](https://github.com/NauliDinda/vote50/blob/main/images/vote_candidate.png)
 ---
 As a voter, the voter can only log in, vote, log out and view the result.
 
 ### the landing page of voting result should appear:
 ---
-![Vote Result](https://github.com/code50/148388805/tree/main/project/images/vote_result.png)
+![Vote Result](https://github.com/NauliDinda/vote50/blob/main/images/vote_result.png)
 ---
 
 If a voter has voted log in, there will be a message saying that "After we check, you have already voted so there is no need to vote again."
